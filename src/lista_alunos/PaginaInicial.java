@@ -19,6 +19,7 @@ public class PaginaInicial extends JFrame implements ActionListener{
     CadastrarPanel painelCadastro;
     ListarPanel painelListar;
     AtualizarPanel painelAtualizar;
+    DeletarPanel painelDeletar;
     
     
     public PaginaInicial() {
@@ -38,12 +39,14 @@ public class PaginaInicial extends JFrame implements ActionListener{
         painelCadastro = new CadastrarPanel(controller);
         painelListar = new ListarPanel(controller);
         painelAtualizar = new AtualizarPanel(controller);
+        painelDeletar = new DeletarPanel(controller);
 
         centerPanel.setLayout(new CardLayout());
         centerPanel.add(new JPanel(), "Vazio");
         centerPanel.add(painelCadastro, "Cadastrar");
         centerPanel.add(painelListar, "Listar");
         centerPanel.add(painelAtualizar, "Atualizar");
+        centerPanel.add(painelDeletar, "Deletar");
 
         // Criando o cardLayout
         cardLayout = (CardLayout) centerPanel.getLayout();
