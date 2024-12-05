@@ -34,4 +34,13 @@ public class ControllerAlunos {
         }
         return false;
     }
+
+    public boolean atualizarVertente(String matricula, String novaVertente) {
+        Aluno aluno = buscarPorMatricula(matricula);
+        if (aluno != null) {
+            aluno.setVertente(novaVertente);
+            return true;
+        }
+        return false;
+    }
 }
