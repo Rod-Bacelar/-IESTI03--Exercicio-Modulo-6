@@ -14,10 +14,17 @@ public class PaginaInicial extends JFrame implements ActionListener{
     JPanel northPanel = new JPanel();
     JPanel centerPanel = new JPanel();
     CardLayout cardLayout;
+    ControllerAlunos controller;
+
+    CadastrarPanel painelCadastro;
+    ListarPanel painelListar;
     
     
     public PaginaInicial() {
         setLayout(new BorderLayout());
+
+        // Criando o controller
+        controller = new ControllerAlunos();
 
         // Adicionando as opções no painel norte
 
@@ -27,10 +34,13 @@ public class PaginaInicial extends JFrame implements ActionListener{
         northPanel.add(criarButton("Deletar"));
 
         // Adicionando os paineis do painel centro utilizando CardLayout
+        painelCadastro = new CadastrarPanel(controller);
+        painelListar = new ListarPanel(controller);
+
         centerPanel.setLayout(new CardLayout());
         centerPanel.add(new JPanel(), "Vazio");
-        centerPanel.add(new CadastrarPanel(), "Cadastrar");
-        centerPanel.add(new ListarPanel(), "Listar");
+        centerPanel.add(painelCadastro, "Cadastrar");
+        centerPanel.add(painelListar, "Listar");
 
         // Criando o cardLayout
         cardLayout = (CardLayout) centerPanel.getLayout();
@@ -57,6 +67,10 @@ public class PaginaInicial extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         JButton sourceButton = (JButton) e.getSource();
         String buttonText = sourceButton.getText();
+
+        if (buttonText.equals("Listar")) {
+            painelListar.atualizarTable();
+        }
 
         cardLayout.show(centerPanel, buttonText);
     }

@@ -15,8 +15,12 @@ public class CadastrarPanel extends JPanel implements ActionListener{
     JTextField cpfInput = new JTextField(10);
     JTextField matriculaInput = new JTextField(10);
     JTextField poloInput = new JTextField(10);
+
+    ControllerAlunos controller;
     
-    public CadastrarPanel() {
+    public CadastrarPanel(ControllerAlunos controller) {
+        this.controller = controller;
+
         setLayout(new GridLayout(5, 2, 10, 50));
         setBorder(new EmptyBorder(20, 20, 20, 20));
 
@@ -26,6 +30,7 @@ public class CadastrarPanel extends JPanel implements ActionListener{
         JLabel poloLabel = new JLabel("Polo: ");
         JLabel nadaLabel = new JLabel();
         JButton cadastrarButton = new JButton("Cadastrar");
+        cadastrarButton.addActionListener(this);
 
         add(nomeLabel);
         add(nomeInput);
@@ -41,6 +46,18 @@ public class CadastrarPanel extends JPanel implements ActionListener{
 
 
     public void actionPerformed(ActionEvent e) {
-        return;
+        String nome = nomeInput.getText();
+        String cpf = cpfInput.getText();
+        String matricula = matriculaInput.getText();
+        String polo = poloInput.getText();
+
+        nomeInput.setText("");
+        cpfInput.setText("");
+        matriculaInput.setText("");
+        poloInput.setText("");
+
+        Aluno novoAluno = new Aluno(nome, cpf, matricula, polo);
+
+        controller.adicionarAluno(novoAluno);
     }
 }

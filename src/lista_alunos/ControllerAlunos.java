@@ -13,7 +13,7 @@ public class ControllerAlunos {
         alunos.add(aluno);
     }
 
-    public ArrayList<Aluno> getLista() {
+    public ArrayList<Aluno> getListaAlunos() {
         return alunos;
     }
 
