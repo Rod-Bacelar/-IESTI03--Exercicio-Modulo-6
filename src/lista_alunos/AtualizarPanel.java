@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -40,9 +41,17 @@ public class AtualizarPanel extends JPanel implements ActionListener{
         String matricula = matriculaInput.getText();
         String polo = poloInput.getText();
 
+        boolean status;
+
         matriculaInput.setText("");
         poloInput.setText("");
 
-        controller.atualizarVertente(matricula, polo);
+        status = controller.atualizarVertente(matricula, polo);
+
+        if (status) {
+            JOptionPane.showMessageDialog(null, "Aluno atualizado com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Aluno não encontrado!", "Atualizar", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

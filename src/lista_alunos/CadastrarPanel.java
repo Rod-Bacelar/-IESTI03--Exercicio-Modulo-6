@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -59,5 +60,8 @@ public class CadastrarPanel extends JPanel implements ActionListener{
         Aluno novoAluno = new Aluno(nome, cpf, matricula, polo);
 
         controller.adicionarAluno(novoAluno);
+
+        JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+
     }
 }

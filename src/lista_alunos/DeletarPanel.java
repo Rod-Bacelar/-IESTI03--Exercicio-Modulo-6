@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -36,9 +37,16 @@ public class DeletarPanel extends JPanel implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
         String matricula = matriculaInput.getText();
+        boolean status;
 
         matriculaInput.setText("");
 
-        controller.deletarAluno(matricula);
+        status = controller.deletarAluno(matricula);
+
+        if (status) {
+            JOptionPane.showMessageDialog(null, "Aluno deletado com sucesso!", "Deletar", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Aluno não encontrado!", "Deletar", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
